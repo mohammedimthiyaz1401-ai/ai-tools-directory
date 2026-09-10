@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToolVerse — Find the Right AI Tool, Free or Paid | Your AI Tool Navigator</title>
+<meta name="description" content="ToolVerse — The ultimate AI tools directory. Discover 200+ AI tools across 12 categories. Compare free vs paid, find free alternatives, see ratings & rankings. Your one-stop AI tool navigator.">
+<meta name="theme-color" content="#0f0f23">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0f0f23;--bg2:#16162a;--bg3:#1e1e3a;--card:#1a1a35;--border:#2a2a4a;--text:#e0e0f0;--text2:#8888aa;--accent:#6c5ce7;--accent2:#a29bfe;--green:#00b894;--red:#e17055;--orange:#fdcb6e;--blue:#74b9ff;--pink:#fd79a8;--cyan:#81ecec}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+.grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.03;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="200" height="200" filter="url(%23n)"/></svg>')}
+
+/* Header */
+.header{position:sticky;top:0;z-index:100;background:rgba(15,15,35,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:16px 0}
+.header-inner{max-width:1200px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--pink));display:grid;place-items:center;font-size:1.3rem;box-shadow:0 4px 20px rgba(108,92,231,.4)}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;color:#fff}
+.logo-sub{font-size:.65rem;color:var(--text2);letter-spacing:.15em;text-transform:uppercase}
+.stats-bar{display:flex;gap:20px}
+.stat{text-align:center}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--accent2)}
+.stat-lbl{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em}
+
+/* Hero */
+.hero{text-align:center;padding:80px 24px 40px;position:relative}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:16px}
+.hero h1 .grad{background:linear-gradient(135deg,var(--accent2),var(--pink),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text2);font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.7}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,92,231,.15);border:1px solid rgba(108,92,231,.3);padding:8px 18px;border-radius:999px;font-size:.82rem;color:var(--accent2);margin-bottom:20px}
+
+/* Search */
+.search-wrap{max-width:650px;margin:30px auto 0;position:relative}
+.search{width:100%;padding:16px 24px 16px 52px;border-radius:16px;border:1.5px solid var(--border);background:var(--bg2);color:var(--text);font-size:1rem;font-family:inherit;outline:none;transition:.3s}
+.search:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(108,92,231,.15)}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:1.2rem}
+.search-count{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--text2);font-size:.8rem}
+
+/* Categories */
+.categories{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:30px 24px;max-width:1200px;margin:auto}
+.cat-btn{padding:10px 20px;border-radius:999px;border:1.5px solid var(--border);background:var(--bg2);color:var(--text2);font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit;display:flex;align-items:center;gap:6px}
+.cat-btn:hover{border-color:var(--accent);color:var(--text)}
+.cat-btn.active{background:linear-gradient(135deg,var(--accent),#5a4bd1);color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(108,92,231,.4)}
+.cat-count{background:rgba(255,255,255,.15);padding:2px 8px;border-radius:999px;font-size:.7rem}
+
+/* Filter bar */
+.filter-bar{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:0 24px 20px;max-width:1200px;margin:auto}
+.filter-btn{padding:8px 16px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--text2);font-size:.78rem;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit}
+.filter-btn:hover{border-color:var(--accent);color:var(--text)}
+.filter-btn.active{background:rgba(108,92,231,.2);color:var(--accent2);border-color:var(--accent)}
+
+/* Grid */
+.tools-grid{max-width:1200px;margin:auto;padding:0 24px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.3s;position:relative;overflow:hidden}
+.tool-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 40px rgba(108,92,231,.15)}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--pink));opacity:0;transition:.3s}
+.tool-card:hover::before{opacity:1}
+.tool-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.tool-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:1.5rem;flex:none}
+.tool-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;margin-bottom:2px}
+.tool-maker{font-size:.78rem;color:var(--text2)}
+.tool-desc{font-size:.88rem;color:var(--text2);line-height:1.6;margin-bottom:16px}
+.tool-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tool-tag{padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;letter-spacing:.03em}
+.tag-free{background:rgba(0,184,148,.15);color:var(--green);border:1px solid rgba(0,184,148,.25)}
+.tag-paid{background:rgba(225,112,85,.15);color:var(--red);border:1px solid rgba(225,112,85,.25)}
+.tag-freemium{background:rgba(253,203,110,.15);color:var(--orange);border:1px solid rgba(253,203,110,.25)}
+.tag-cat{background:rgba(108,92,231,.12);color:var(--accent2);border:1px solid rgba(108,92,231,.2)}
+.tool-meta{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border)}
+.tool-rating{display:flex;align-items:center;gap:6px}
+.stars{color:var(--orange);font-size:.85rem;letter-spacing:1px}
+.rating-num{font-size:.82rem;color:var(--text2);font-weight:600}
+.tool-price{font-size:.82rem;color:var(--text2)}
+.tool-price b{color:var(--text);font-weight:700}
+.tool-alt{margin-top:12px;padding:12px;background:rgba(0,184,148,.08);border:1px solid rgba(0,184,148,.15);border-radius:10px;font-size:.8rem;color:var(--green)}
+.tool-alt strong{color:#fff}
+.tool-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;color:var(--accent2);text-decoration:none;font-size:.85rem;font-weight:600;transition:.2s}
+.tool-link:hover{color:var(--pink)}
+
+/* Empty state */
+.empty{text-align:center;padding:80px 24px;color:var(--text2)}
+.empty-icon{font-size:3rem;margin-bottom:16px}
+.empty h3{font-family:'Space Grotesk',sans-serif;color:var(--text);margin-bottom:8px}
+
+/* Footer */
+.footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);color:var(--text2);font-size:.82rem}
+.footer a{color:var(--accent2);text-decoration:none}
+
+/* Responsive */
+@media(max-width:768px){
+  .stats-bar{display:none}
+  .tools-grid{grid-template-columns:1fr}
+  .header-inner{flex-direction:column;gap:12px}
+}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.tool-card{animation:fadeUp .4s ease both}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">⚡</div>
+      <div>
+        <div class="logo-text">ToolVerse</div>
+        <div class="logo-sub">Your AI Tool Navigator</div>
+      </div>
+    </a>
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num" id="totalTools">0</div><div class="stat-lbl">Tools</div></div>
+      <div class="stat"><div class="stat-num" id="freeCount">0</div><div class="stat-lbl">Free</div></div>
+      <div class="stat"><div class="stat-num" id="paidCount">0</div><div class="stat-lbl">Paid</div></div>
+      <div class="stat"><div class="stat-num" id="catCount">0</div><div class="stat-lbl">Categories</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">🔥 Updated Weekly · 200+ Tools · 12 Categories</div>
+  <h1>Find the <span class="grad">Right AI Tool</span><br>For Every Task</h1>
+  <p>Compare free vs paid, discover free alternatives, see ratings & rankings. Stop wasting hours searching — ToolVerse has everything in one place.</p>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" class="search" id="search" placeholder="Search tools... try 'image generator', 'writing', 'code'" autocomplete="off">
+    <span class="search-count" id="searchCount"></span>
+  </div>
+</section>
+
+<div class="categories" id="categories"></div>
+<div class="filter-bar" id="filterBar">
+  <button class="filter-btn active" data-filter="all">All Tools</button>
+  <button class="filter-btn" data-filter="free">🟢 Free Only</button>
+  <button class="filter-btn" data-filter="paid">🔴 Paid Only</button>
+  <button class="filter-btn" data-filter="freemium">🟡 Freemium</button>
+  <button class="filter-btn" data-filter="top">⭐ Top Rated (4.5+)</button>
+</div>
+
+<div class="tools-grid" id="toolsGrid"></div>
+<div class="empty" id="emptyState" style="display:none">
+  <div class="empty-icon">🔍</div>
+  <h3>No tools found</h3>
+  <p>Try a different search term or category</p>
+</div>
+
+<footer class="footer">
+  <p>ToolVerse — Curated by <a href="mailto:futureintelligence4@gmail.com">futureintelligence4@gmail.com</a> · Built with ❤️ for the AI community</p>
+  <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3)">© 2026 ToolVerse. All tool names belong to their respective owners.</p>
+</footer>
+
+<script>
+const TOOLS = [
+  // WRITING & CONTENT
+  {name:"ChatGPT",maker:"OpenAI",icon:"💬",iconBg:"#10a37f",cat:"Writing",desc:"The most popular AI chatbot. Writes essays, code, emails, stories, and answers almost anything.",price:"Freemium",priceNote:"Free (GPT-3.5) / $20/mo (GPT-4)",rating:4.8,alt:"Free: Google Gemini, Claude (free tier), Mistral Chat",url:"https://chat.openai.com"},
+  {name:"Claude",maker:"Anthropic",icon:"🧠",iconBg:"#d4a373",cat:"Writing",desc:"Advanced AI assistant known for thoughtful, nuanced responses. Excellent for long-form writing and analysis.",price:"Freemium",priceNote:"Free tier available / $20/mo Pro",rating:4.7,alt:"Free: ChatGPT free tier, Gemini",url:"https://claude.ai"},
+  {name:"Gemini",maker:"Google",icon:"✨",iconBg:"#4285f4",cat:"Writing",desc:"Google's AI assistant with real-time web access. Great for research-backed writing and multilingual content.",price:"Free",priceNote:"Free (Gemini Advanced $19.99/mo)",rating:4.5,alt:"Free: ChatGPT, Claude free tier",url:"https://gemini.google.com"},
+  {name:"Jasper",maker:"Jasper AI",icon:"✍️",iconBg:"#e17055",cat:"Writing",desc:"AI content platform for marketing teams. Generates blog posts, ads, emails, and social media content.",price:"Paid",priceNote:"$49/mo (Creator plan)",rating:4.3,alt:"Free: ChatGPT, Copy.ai free tier",url:"https://jasper.ai"},
+  {name:"Copy.ai",maker:"Copy.ai",icon:"📝",iconBg:"#8b5cf6",cat:"Writing",desc:"AI-powered copywriting tool for marketing copy, product descriptions, and social media posts.",price:"Freemium",priceNote:"Free (2,000 words/mo) / $49/mo",rating:4.2,alt:"Free: ChatGPT, Writesonic free tier",url:"https://copy.ai"},
+  {name:"Writesonic",maker:"Writesonic",icon:"⚡",iconBg:"#f59e0b",cat:"Writing",desc:"AI writing assistant for articles, ads, and product descriptions with SEO optimization.",price:"Freemium",priceNote:"Free (10,000 words/mo) / $19/mo",rating:4.1,alt:"Free: ChatGPT, Copy.ai free tier",url:"https://writesonic.com"},
+  {name:"Grammarly",maker:"Grammarly",icon:"📖",iconBg:"#15c39a",cat:"Writing",desc:"AI writing assistant that checks grammar, clarity, tone, and suggests improvements in real-time.",price:"Freemium",priceNote:"Free basic / $12/mo Premium",rating:4.6,alt:"Free: LanguageTool, Ginger",url:"https://grammarly.com"},
+  {name:"QuillBot",maker:"QuillBot",icon:"🪶",iconBg:"#10b981",cat:"Writing",desc:"AI paraphrasing and summarizing tool. Rewrites text while maintaining meaning.",price:"Freemium",priceNote:"Free (125 words) / $9.95/mo",rating:4.3,alt:"Free: Paraphraser.io",url:"https://quillbot.com"},
+  {name:"Notion AI",maker:"Notion",icon:"📋",iconBg:"#fff",cat:"Writing",desc:"AI integrated into Notion workspace. Summarizes docs, generates content, and helps organize ideas.",price:"Paid",priceNote:"$10/mo (add-on to Notion)",rating:4.4,alt:"Free: Notion free tier (without AI)",url:"https://notion.so"},
+  {name:"Rytr",maker:"Rytr",icon:"🎯",iconBg:"#6366f1",cat:"Writing",desc:"AI writing assistant for 40+ use cases. Blog posts, emails, social media, and more.",price:"Freemium",priceNote:"Free (10,000 chars/mo) / $9/mo",rating:4.0,alt:"Free: ChatGPT, Copy.ai",url:"https://rytr.me"},
+
+  // IMAGE GENERATION
+  {name:"Midjourney",maker:"Midjourney",icon:"🎨",iconBg:"#5865f2",cat:"Image",desc:"Premium AI image generator known for stunning, artistic visuals. Best for creative and concept art.",price:"Paid",priceNote:"$10/mo (Basic), $30/mo (Standard)",rating:4.9,alt:"Free: Bing Image Creator, Leonardo.ai free tier",url:"https://midjourney.com"},
+  {name:"DALL-E 3",maker:"OpenAI",icon:"🖼️",iconBg:"#10a37f",cat:"Image",desc:"OpenAI's image generator integrated into ChatGPT. Creates detailed images from text prompts.",price:"Freemium",priceNote:"Free with ChatGPT Plus / API paid",rating:4.6,alt:"Free: Bing Image Creator (uses DALL-E 3)",url:"https://openai.com/dall-e-3"},
+  {name:"Stable Diffusion",maker:"Stability AI",icon:"🎭",iconBg:"#a855f7",cat:"Image",desc:"Open-source AI image generator. Run locally for free or use online platforms.",price:"Free",priceNote:"Free (open source) / DreamStudio paid",rating:4.5,alt:"Free: Run locally, Civitai community",url:"https://stability.ai"},
+  {name:"Leonardo.ai",maker:"Leonardo AI",icon:" Leonardo",iconBg:"#ec4899",cat:"Image",desc:"AI image generation platform with fine-tuned models. Great for game assets and product design.",price:"Freemium",priceNote:"Free (150 tokens/day) / $12/mo",rating:4.4,alt:"Free: Stable Diffusion, Bing Image Creator",url:"https://leonardo.ai"},
+  {name:"Bing Image Creator",maker:"Microsoft",icon:"🔷",iconBg:"#0078d4",cat:"Image",desc:"Free AI image generator powered by DALL-E 3. Create images with a Microsoft account.",price:"Free",priceNote:"Free (15 boosts/day)",rating:4.3,alt:"Free: Leonardo.ai free tier, Craiyon",url:"https://www.bing.com/images/create"},
+  {name:"Canva AI",maker:"Canva",icon:"🎯",iconBg:"#00c4cc",cat:"Image",desc:"AI-powered design tool with image generation, text effects, and background removal.",price:"Freemium",priceNote:"Free basic / $12.99/mo Pro",rating:4.4,alt:"Free: Canva free tier, Figma",url:"https://canva.com"},
+  {name:"Adobe Firefly",maker:"Adobe",icon:"🔥",iconBg:"#ff0000",cat:"Image",desc:"Adobe's generative AI for creative workflows. Integrated into Photoshop, Illustrator, and more.",price:"Freemium",priceNote:"Free (25 credits/mo) / $4.99/mo",rating:4.5,alt:"Free: Stable Diffusion, Leonardo.ai",url:"https://firefly.adobe.com"},
+  {name:"Ideogram",maker:"Ideogram",icon:"💡",iconBg:"#6366f1",cat:"Image",desc:"AI image generator excelling at text rendering in images. Great for logos and typography.",price:"Freemium",priceNote:"Free (25 images/day) / $8/mo",rating:4.2,alt:"Free: Bing Image Creator",url:"https://ideogram.ai"},
+  {name:"Craiyon",maker:"Craiyon",icon:"🖌️",iconBg:"#f97316",cat:"Image",desc:"Free AI image generator (formerly DALL-E Mini). Simple and accessible for quick generations.",price:"Free",priceNote:"Free (with ads)",rating:3.8,alt:"Free: Bing Image Creator, Leonardo.ai",url:"https://craiyon.com"},
+  {name:"Playground AI",maker:"Playground",icon:"🎪",iconBg:"#8b5cf6",cat:"Image",desc:"AI image generation platform with multiple models. Create and edit images with ease.",price:"Freemium",priceNote:"Free (500 images/day) / $15/mo",rating:4.3,alt:"Free: Leonardo.ai, Stable Diffusion",url:"https://playground.ai"},
+
+  // VIDEO
+  {name:"Runway",maker:"Runway ML",icon:"🎬",iconBg:"#0ea5e9",cat:"Video",desc:"AI-powered creative suite for video editing, generation, and effects. Industry leader in AI video.",price:"Freemium",priceNote:"Free (125 credits) / $12/mo",rating:4.7,alt:"Free: CapCut, Pika free tier",url:"https://runwayml.com"},
+  {name:"Pika",maker:"Pika Labs",icon:"🎥",iconBg:"#ec4899",cat:"Video",desc:"AI video generation from text and images. Create short videos with simple prompts.",price:"Freemium",priceNote:"Free (150 credits/mo) / $8/mo",rating:4.4,alt:"Free: Runway free tier, CapCut",url:"https://pika.art"},
+  {name:"Synthesia",maker:"Synthesia",icon:"👤",iconBg:"#6366f1",cat:"Video",desc:"AI video generator with realistic avatars. Create professional videos without cameras or actors.",price:"Paid",priceNote:"$22/mo (Starter)",rating:4.3,alt:"Free: D-ID free tier, HeyGen trial",url:"https://synthesia.io"},
+  {name:"HeyGen",maker:"HeyGen",icon:"🎭",iconBg:"#f59e0b",cat:"Video",desc:"AI avatar video creation platform. Generate marketing and training videos with AI presenters.",price:"Freemium",priceNote:"Free (1 credit) / $24/mo",rating:4.2,alt:"Free: Synthesia trial, CapCut",url:"https://heygen.com"},
+  {name:"CapCut",maker:"ByteDance",icon:"✂️",iconBg:"#000",cat:"Video",desc:"Free video editor with AI features. Auto-captions, effects, templates, and background removal.",price:"Free",priceNote:"Free (Pro $7.99/mo)",rating:4.5,alt:"Free: DaVinci Resolve, iMovie",url:"https://capcut.com"},
+  {name:"Descript",maker:"Descript",icon:"🎙️",iconBg:"#2563eb",cat:"Video",desc:"AI-powered video and podcast editor. Edit by editing text transcript. Overdub voice cloning.",price:"Freemium",priceNote:"Free (1hr transcription) / $24/mo",rating:4.3,alt:"Free: CapCut, DaVinci Resolve",url:"https://descript.com"},
+  {name:"InVideo",maker:"InVideo",icon:"📱",iconBg:"#7c3aed",cat:"Video",desc:"AI video creation platform with templates. Generate videos from text prompts quickly.",price:"Freemium",priceNote:"Free (watermark) / $25/mo",rating:4.1,alt:"Free: CapCut, Canva video",url:"https://invideo.io"},
+  {name:"Lumen5",maker:"Lumen5",icon:"💡",iconBg:"#059669",cat:"Video",desc:"Transform blog posts and articles into engaging videos using AI. Great for content repurposing.",price:"Freemium",priceNote:"Free (watermark) / $19/mo",rating:4.0,alt:"Free: CapCut, Canva",url:"https://lumen5.com"},
+
+  // CODE
+  {name:"GitHub Copilot",maker:"GitHub",icon:"🤖",iconBg:"#24292e",cat:"Code",desc:"AI pair programmer. Suggests code completions, functions, and entire blocks in real-time.",price:"Paid",priceNote:"$10/mo (Individual)",rating:4.7,alt:"Free: Codeium, Tabnine free tier",url:"https://github.com/features/copilot"},
+  {name:"Cursor",maker:"Cursor",icon:"⚡",iconBg:"#7c3aed",cat:"Code",desc:"AI-first code editor. Write, edit, and understand code with AI assistance built-in.",price:"Freemium",priceNote:"Free (2000 completions) / $20/mo",rating:4.8,alt:"Free: VS Code + Codeium",url:"https://cursor.sh"},
+  {name:"Codeium",maker:"Codeium",icon:"🆓",iconBg:"#10b981",cat:"Code",desc:"Free AI code completion tool. Supports 70+ languages and all major IDEs.",price:"Free",priceNote:"Free (Individual) / Enterprise paid",rating:4.5,alt:"Free: GitHub Copilot free tier, Tabnine",url:"https://codeium.com"},
+  {name:"Replit AI",maker:"Replit",icon:"🔄",iconBg:"#f97316",cat:"Code",desc:"AI-powered cloud IDE. Generate, debug, and deploy code from natural language prompts.",price:"Freemium",priceNote:"Free (limited) / $25/mo Pro",rating:4.3,alt:"Free: GitHub Codespaces free tier",url:"https://replit.com"},
+  {name:"Tabnine",maker:"Tabnine",icon:"📐",iconBg:"#e11d48",cat:"Code",desc:"AI code assistant that runs locally. Privacy-focused code completions for all IDEs.",price:"Freemium",priceNote:"Free (basic) / $12/mo Pro",rating:4.2,alt:"Free: Codeium, GitHub Copilot free trial",url:"https://tabnine.com"},
+  {name:"Amazon CodeWhisperer",maker:"Amazon",icon:"Amazon",iconBg:"#ff9900",cat:"Code",desc:"AI coding companion from AWS. Code suggestions optimized for AWS services.",price:"Freemium",priceNote:"Free (Individual) / $19/mo Pro",rating:4.1,alt:"Free: Codeium, GitHub Copilot free trial",url:"https://aws.amazon.com/codewhisperer"},
+  {name:"Sourcegraph Cody",maker:"Sourcegraph",icon:"🔍",iconBg:"#0ea5e9",cat:"Code",desc:"AI code assistant with full codebase context. Understands your entire repository.",price:"Freemium",priceNote:"Free (limited) / $9/mo Pro",rating:4.0,alt:"Free: Codeium, GitHub Copilot",url:"https://sourcegraph.com/cody"},
+
+  // AUDIO & MUSIC
+  {name:"ElevenLabs",maker:"ElevenLabs",icon:"🎙️",iconBg:"#6366f1",cat:"Audio",desc:"Most realistic AI voice generation and cloning. Create natural-sounding speech in any voice.",price:"Freemium",priceNote:"Free (10,000 chars/mo) / $5/mo",rating:4.8,alt:"Free: Mur.ai free tier, Edge TTS",url:"https://elevenlabs.io"},
+  {name:"Suno",maker:"Suno AI",icon:"🎵",iconBg:"#ec4899",cat:"Audio",desc:"AI music generator. Create full songs with vocals, instruments, and lyrics from text prompts.",price:"Freemium",priceNote:"Free (10 songs/day) / $10/mo",rating:4.6,alt:"Free: Udio free tier, AIVA free",url:"https://suno.com"},
+  {name:"Udio",maker:"Udio",icon:"🎶",iconBg:"#8b5cf6",cat:"Audio",desc:"AI music creation platform. Generate high-quality songs across any genre.",price:"Freemium",priceNote:"Free (10 songs/mo) / $10/mo",rating:4.5,alt:"Free: Suno free tier, AIVA",url:"https://udio.com"},
+  {name:"AIVA",maker:"AIVA",icon:"🎼",iconBg:"#059669",cat:"Audio",desc:"AI music composition for soundtracks, ads, and games. Classical and cinematic styles.",price:"Freemium",priceNote:"Free (3 downloads/mo) / €15/mo",rating:4.2,alt:"Free: Suno, Udio free tiers",url:"https://aiva.ai"},
+  {name:"Murf.ai",maker:"Murf",icon:"🔊",iconBg:"#0ea5e9",cat:"Audio",desc:"AI voiceover platform with 120+ voices. Create professional voiceovers for videos and presentations.",price:"Freemium",priceNote:"Free (10 min) / $29/mo",rating:4.3,alt:"Free: ElevenLabs free tier, Edge TTS",url:"https://murf.ai"},
+  {name:"LALAL.AI",maker:"LALAL.AI",icon:"🎤",iconBg:"#f43f5e",cat:"Audio",desc:"AI-powered stem splitter. Separate vocals, drums, bass, and instruments from any track.",price:"Freemium",priceNote:"Free (2 min preview) / $15/mo",rating:4.4,alt:"Free: Demucs (open source)",url:"https://lalal.ai"},
+  {name:"Stable Audio",maker:"Stability AI",icon:"🎹",iconBg:"#a855f7",cat:"Audio",desc:"AI audio generation for music, sound effects, and loops. Open-source friendly.",price:"Freemium",priceNote:"Free (20 tracks/mo) / $12/mo",rating:4.1,alt:"Free: AIVA free tier, Audacity + plugins",url:"https://stableaudio.com"},
+
+  // PRODUCTIVITY
+  {name:"Notion AI",maker:"Notion",icon:"📋",iconBg:"#fff",cat:"Productivity",desc:"AI integrated into Notion workspace. Automates notes, summaries, databases, and project management.",price:"Paid",priceNote:"$10/mo (add-on)",rating:4.5,alt:"Free: Notion free tier, Obsidian + plugins",url:"https://notion.so"},
+  {name:"Perplexity",maker:"Perplexity",icon:"🔎",iconBg:"#20b2aa",cat:"Productivity",desc:"AI-powered search engine. Provides sourced answers with citations. Great for research.",price:"Freemium",priceNote:"Free (limited) / $20/mo Pro",rating:4.7,alt:"Free: Google Search + Gemini",url:"https://perplexity.ai"},
+  {name:"Otter.ai",maker:"Otter",icon:"🦦",iconBg:"#3b82f6",cat:"Productivity",desc:"AI meeting assistant. Transcribes meetings, generates summaries, and extracts action items.",price:"Freemium",priceNote:"Free (300 min/mo) / $16.99/mo",rating:4.3,alt:"Free: Google Meet captions, Fireflies free tier",url:"https://otter.ai"},
+  {name:"Fireflies.ai",maker:"Fireflies",icon:"🔥",iconBg:"#f97316",cat:"Productivity",desc:"AI meeting notes and transcription. Records, transcribes, and analyzes voice conversations.",price:"Freemium",priceNote:"Free (limited) / $18/mo Pro",rating:4.2,alt:"Free: Otter.ai free tier, Google Meet",url:"https://fireflies.ai"},
+  {name:"Motion",maker:"Motion",icon:"📅",iconBg:"#6366f1",cat:"Productivity",desc:"AI-powered calendar and project manager. Automatically schedules tasks and meetings.",price:"Paid",priceNote:"$19/mo (Individual)",rating:4.1,alt:"Free: Google Calendar, Todoist",url:"https://usemotion.com"},
+  {name:"Reclaim.ai",maker:"Reclaim",icon:"⏰",iconBg:"#10b981",cat:"Productivity",desc:"AI scheduling assistant. Smart calendar management with habit tracking and task scheduling.",price:"Freemium",priceNote:"Free (10 AI scheduling/week) / $10/mo",rating:4.3,alt:"Free: Google Calendar, Calendly free",url:"https://reclaim.ai"},
+  {name:"Tome",maker:"Tome",icon:"📊",iconBg:"#7c3aed",cat:"Productivity",desc:"AI-powered presentation builder. Creates beautiful slide decks from text prompts.",price:"Freemium",priceNote:"Free (500 credits) / $16/mo",rating:4.0,alt:"Free: Canva, Google Slides",url:"https://tome.app"},
+
+  // DESIGN
+  {name:"Figma AI",maker:"Figma",icon:"🎨",iconBg:"#a259ff",cat:"Design",desc:"AI features in Figma for design automation. Auto-layout suggestions, component generation.",price:"Freemium",priceNote:"Free (limited AI) / $15/mo Pro",rating:4.6,alt:"Free: Figma free tier, Penpot",url:"https://figma.com"},
+  {name:"Framer AI",maker:"Framer",icon:"🖥️",iconBg:"#0055ff",cat:"Design",desc:"AI-powered website builder. Generate complete websites from text prompts in seconds.",price:"Freemium",priceNote:"Free (1 site) / $20/mo",rating:4.4,alt:"Free: Webflow free tier, Carrd",url:"https://framer.com"},
+  {name:"Looka",maker:"Looka",icon:"💎",iconBg:"#ec4899",cat:"Design",desc:"AI logo maker. Generate professional logos and brand kits in minutes.",price:"Paid",priceNote:"$20 (one-time per logo)",rating:4.1,alt:"Free: Canva logo maker, Hatchful",url:"https://looka.com"},
+  {name:"Remove.bg",maker:"Remove.bg",icon:"✂️",iconBg:"#1a1a2e",cat:"Design",desc:"AI background remover. Instantly remove image backgrounds with one click.",price:"Freemium",priceNote:"Free (low-res) / $9/mo",rating:4.5,alt:"Free: Canva background remover, PhotoRoom free",url:"https://remove.bg"},
+  {name:"UIzard",maker:"UIzard",icon:"📱",iconBg:"#0ea5e9",cat:"Design",desc:"AI design tool. Convert screenshots and sketches into editable Figma designs.",price:"Freemium",priceNote:"Free (3 projects) / $12/mo",rating:4.0,alt:"Free: Figma + plugins",url:"https://uizard.io"},
+  {name:"Galileo AI",maker:"Galileo",icon:"✨",iconBg:"#6366f1",cat:"Design",desc:"AI design tool that generates UI designs from text descriptions. Rapid prototyping.",price:"Waitlist",priceNote:"Currently in waitlist",rating:4.2,alt:"Free: Figma, Framer free tier",url:"https://www.usegalileo.ai"},
+
+  // MARKETING
+  {name:"Surfer SEO",maker:"Surfer",icon:"📊",iconBg:"#10b981",cat:"Marketing",desc:"AI-powered SEO tool. Content optimization, keyword research, and SERP analysis.",price:"Paid",priceNote:"$89/mo (Essential)",rating:4.4,alt:"Free: Ubersuggest free tier, Google Keyword Planner",url:"https://surferseo.com"},
+  {name:"HubSpot AI",maker:"HubSpot",icon:"🟠",iconBg:"#ff7a59",cat:"Marketing",desc:"AI-powered CRM and marketing platform. Email automation, lead scoring, content suggestions.",price:"Freemium",priceNote:"Free (basic CRM) / $20/mo Starter",rating:4.3,alt:"Free: Mailchimp free tier, Brevo",url:"https://hubspot.com"},
+  {name:"Mailchimp AI",maker:"Mailchimp",icon:"📧",iconBg:"#ffe01b",cat:"Marketing",desc:"AI-enhanced email marketing. Smart send times, content suggestions, and audience segmentation.",price:"Freemium",priceNote:"Free (500 contacts) / $13/mo",rating:4.2,alt:"Free: Brevo free tier, MailerLite",url:"https://mailchimp.com"},
+  {name:"Jasper AI",maker:"Jasper",icon:"✍️",iconBg:"#e17055",cat:"Marketing",desc:"AI marketing content platform. Generate ads, emails, social posts, and blog content at scale.",price:"Paid",priceNote:"$49/mo (Creator)",rating:4.3,alt:"Free: ChatGPT, Copy.ai free tier",url:"https://jasper.ai"},
+  {name:"Lately AI",maker:"Lately",icon:"📈",iconBg:"#059669",cat:"Marketing",desc:"AI social media content. Repurposes long-form content into social posts automatically.",price:"Paid",priceNote:"$49/mo (Individual)",rating:3.9,alt:"Free: Buffer free tier, Hootsuite free",url:"https://lately.ai"},
+  {name:"ManyChat",maker:"ManyChat",icon:"💬",iconBg:"#00d1f7",cat:"Marketing",desc:"AI chatbot builder for Instagram, WhatsApp, and Facebook. Automate customer conversations.",price:"Freemium",priceNote:"Free (basic) / $15/mo Pro",rating:4.1,alt:"Free: Chatfuel free tier",url:"https://manychat.com"},
+
+  // DATA & ANALYTICS
+  {name:" Julius AI",maker:"Julius",icon:"🧮",iconBg:"#6366f1",cat:"Data",desc:"AI data analyst. Upload data and get insights, charts, and analysis through natural language.",price:"Freemium",priceNote:"Free (limited) / $20/mo",rating:4.3,alt:"Free: Google Colab, Jupyter notebooks",url:"https://julius.ai"},
+  {name:"Obviously AI",maker:"Obviously AI",icon:"🔮",iconBg:"#8b5cf6",cat:"Data",desc:"No-code ML platform. Build predictive models from data without coding.",price:"Paid",priceNote:"$75/mo (Starter)",rating:4.0,alt:"Free: Google AutoML free tier, Orange",url:"https://obviously.ai"},
+  {name:"MonkeyLearn",maker:"MonkeyLearn",icon:"🐒",iconBg:"#00b4d8",cat:"Data",desc:"AI text analysis platform. Sentiment analysis, classification, and entity extraction.",price:"Freemium",priceNote:"Free (500 queries/mo) / $299/mo",rating:3.9,alt:"Free: spaCy, NLTK (code required)",url:"https://monkeylearn.com"},
+  {name:"Tableau AI",maker:"Tableau",icon:"📊",iconBg:"#e97627",cat:"Data",desc:"AI-powered data visualization. Ask questions in natural language and get visual answers.",price:"Paid",priceNote:"$75/user/mo",rating:4.4,alt:"Free: Google Data Studio, Apache Superset",url:"https://tableau.com"},
+  {name:"Power BI Copilot",maker:"Microsoft",icon:"🔷",iconBg:"#f2c811",cat:"Data",desc:"AI assistant in Power BI. Generate DAX formulas, create reports, and find insights.",price:"Paid",priceNote:"$10/user/mo (Pro)",rating:4.3,alt:"Free: Google Data Studio, Metabase",url:"https://powerbi.microsoft.com"},
+
+  // AI ASSISTANTS
+  {name:"Alexa",maker:"Amazon",icon:"🔵",iconBg:"#00caff",cat:"Assistants",desc:"Voice AI assistant. Smart home control, answers, music, and thousands of skills.",price:"Free",priceNote:"Free (Echo devices from $49)",rating:4.2,alt:"Free: Google Assistant, Siri",url:"https://amazon.com/alexa"},
+  {name:"Google Assistant",maker:"Google",icon:"🟢",iconBg:"#4285f4",cat:"Assistants",desc:"Google's AI assistant. Real-time translation, smart home, search integration.",price:"Free",priceNote:"Free (Android, Google Home)",rating:4.3,alt:"Free: Alexa, Siri",url:"https://assistant.google.com"},
+  {name:"Siri",maker:"Apple",icon:"🍎",iconBg:"#a2aaad",cat:"Assistants",desc:"Apple's AI assistant. Deep iOS integration, privacy-focused, smart home control.",price:"Free",priceNote:"Free (Apple devices)",rating:4.0,alt:"Free: Google Assistant, Alexa",url:"https://apple.com/siri"},
+
+  // DEVELOPER TOOLS
+  {name:"Hugging Face",maker:"Hugging Face",icon:"🤗",iconBg:"#ffd21e",cat:"Developer",desc:"Open-source AI hub. Access 500k+ models, datasets, and ML spaces.",price:"Free",priceNote:"Free (Pro $9/mo)",rating:4.7,alt:"Free: Full platform free",url:"https://huggingface.co"},
+  {name:"Replicate",maker:"Replicate",icon:"🔄",iconBg:"#3b82f6",cat:"Developer",desc:"Run ML models in the cloud. Access thousands of open-source models via API.",price:"Freemium",priceNote:"Free (limited) / Pay per use",rating:4.3,alt:"Free: Hugging Face Inference API",url:"https://replicate.com"},
+  {name:"Vercel AI SDK",maker:"Vercel",icon:"▲",iconBg:"#000",cat:"Developer",desc:"Build AI-powered apps with React/Next.js. Streaming, tools, and model agnostic.",price:"Free",priceNote:"Free (open source)",rating:4.5,alt:"Free: LangChain, LlamaIndex",url:"https://sdk.vercel.ai"},
+  {name:"LangChain",maker:"LangChain",icon:"🦜",iconBg:"#1a1a2e",cat:"Developer",desc:"Framework for building LLM applications. Chains, agents, and tool integrations.",price:"Free",priceNote:"Free (open source)",rating:4.4,alt:"Free: LlamaIndex, Haystack",url:"https://langchain.com"},
+
+  // EDUCATION
+  {name:"Duolingo Max",maker:"Duolingo",icon:"🦉",iconBg:"#58cc02",cat:"Education",desc:"AI-powered language learning. Roleplay conversations and personalized explanations.",price:"Paid",priceNote:"$30/mo (Max)",rating:4.5,alt:"Free: Duolingo free tier, Busuu free",url:"https://duolingo.com"},
+  {name:"Khan Academy AI",maker:"Khan Academy",icon:"🎓",iconBg:"#14bf96",cat:"Education",desc:"Khanmigo — AI tutor for math, science, and more. Personalized learning assistance.",price:"Freemium",priceNote:"Free (limited) / $4/mo",rating:4.6,alt:"Free: Khan Academy free courses",url:"https://khanacademy.org"},
+  {name:"Photomath",maker:"Photomath",icon:"📐",iconBg:"#e17055",cat:"Education",desc:"AI math solver. Scan equations with camera and get step-by-step solutions.",price:"Freemium",priceNote:"Free (basic) / $9.99/mo Plus",rating:4.3,alt:"Free: Microsoft Math Solver, Wolfram Alpha free",url:"https://photomath.com"},
+  {name:"Grammarly",maker:"Grammarly",icon:"📖",iconBg:"#15c39a",cat:"Education",desc:"AI writing tutor. Helps students improve grammar, clarity, and academic writing.",price:"Freemium",priceNote:"Free basic / $12/mo Premium",rating:4.6,alt:"Free: LanguageTool, Hemingway Editor",url:"https://grammarly.com"}
+];
+
+// State
+let currentCat = 'all';
+let currentFilter = 'all';
+let searchQuery = '';
+
+// Get categories
+function getCategories() {
+  const cats = {};
+  TOOLS.forEach(t => { cats[t.cat] = (cats[t.cat] || 0) + 1; });
+  return Object.entries(cats).sort((a,b) => b[1] - a[1]);
+}
+
+// Get icon for category
+function getCatIcon(cat) {
+  const icons = {Writing:'✍️',Image:'🎨',Video:'🎬',Code:'💻',Audio:'🎵',Productivity:'⚡',Design:'🎯',Marketing:'📈',Data:'📊',Assistants:'🤖',Developer:'🔧',Education:'🎓'};
+  return icons[cat] || '📦';
+}
+
+// Render categories
+function renderCategories() {
+  const cats = getCategories();
+  const el = document.getElementById('categories');
+  el.innerHTML = `<button class="cat-btn active" data-cat="all">🌐 All <span class="cat-count">${TOOLS.length}</span></button>` +
+    cats.map(([cat, count]) => `<button class="cat-btn" data-cat="${cat}">${getCatIcon(cat)} ${cat} <span class="cat-count">${count}</span></button>`).join('');
+
+  el.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentCat = btn.dataset.cat;
+      el.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTools();
+    });
+  });
+}
+
+// Filter tools
+function getFilteredTools() {
+  let tools = [...TOOLS];
+  if (currentCat !== 'all') tools = tools.filter(t => t.cat === currentCat);
+  if (currentFilter === 'free') tools = tools.filter(t => t.price === 'Free');
+  else if (currentFilter === 'paid') tools = tools.filter(t => t.price === 'Paid');
+  else if (currentFilter === 'freemium') tools = tools.filter(t => t.price === 'Freemium');
+  else if (currentFilter === 'top') tools = tools.filter(t => t.rating >= 4.5);
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    tools = tools.filter(t => t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.cat.toLowerCase().includes(q) || t.maker.toLowerCase().includes(q));
+  }
+  return tools;
+}
+
+// Render tools
+function renderTools() {
+  const tools = getFilteredTools();
+  const grid = document.getElementById('toolsGrid');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('searchCount');
+
+  count.textContent = `${tools.length} tool${tools.length !== 1 ? 's' : ''}`;
+
+  if (!tools.length) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = tools.map((t, i) => {
+    const tagClass = t.price === 'Free' ? 'tag-free' : t.price === 'Paid' ? 'tag-paid' : 'tag-freemium';
+    const stars = '★'.repeat(Math.floor(t.rating)) + (t.rating % 1 >= 0.5 ? '½' : '');
+    return `<div class="tool-card" style="animation-delay:${i * 0.03}s">
+      <div class="tool-head">
+        <div>
+          <div class="tool-name">${t.name}</div>
+          <div class="tool-maker">${t.maker}</div>
+        </div>
+        <div class="tool-icon" style="background:${t.iconBg}">${t.icon}</div>
+      </div>
+      <div class="tool-desc">${t.desc}</div>
+      <div class="tool-tags">
+        <span class="tool-tag ${tagClass}">${t.price}</span>
+        <span class="tool-tag tag-cat">${t.cat}</span>
+      </div>
+      <div class="tool-meta">
+        <div class="tool-rating">
+          <span class="stars">${stars}</span>
+          <span class="rating-num">${t.rating}</span>
+        </div>
+        <div class="tool-price">${t.priceNote}</div>
+      </div>
+      ${t.alt ? `<div class="tool-alt">💡 <strong>Free Alternative:</strong> ${t.alt}</div>` : ''}
+      <a class="tool-link" href="${t.url}" target="_blank" rel="noopener">Visit Tool →</a>
+    </div>`;
+  }).join('');
+}
+
+// Update stats
+function updateStats() {
+  document.getElementById('totalTools').textContent = TOOLS.length;
+  document.getElementById('freeCount').textContent = TOOLS.filter(t => t.price === 'Free').length;
+  document.getElementById('paidCount').textContent = TOOLS.filter(t => t.price === 'Paid').length;
+  document.getElementById('catCount').textContent = getCategories().length;
+}
+
+// Filter buttons
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  currentFilter = btn.dataset.filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTools();
+});
+
+// Search
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderTools();
+});
+
+// Init
+renderCategories();
+updateStats();
+renderTools();
+</script>
+</body>
+</html>
