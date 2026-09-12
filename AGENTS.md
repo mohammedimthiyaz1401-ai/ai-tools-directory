@@ -1,25 +1,46 @@
-# ToolVerse — AI Tools Directory — Memory
+# ToolVerse - AI Tools Directory - AGENTS.md
 
-## Overview
-- **Repo:** mohammedimthiyaz1401-ai/ai-tools-directory
-- **Local:** `C:\Users\Imtiyaz\Documents\ai-tools-directory`
-- **Vercel:** https://ai-tools-directory-pied-five.vercel.app
-- **GitHub Pages:** https://mohammedimthiyaz1401-ai.github.io/ai-tools-directory/
-- **Email:** futureintelligence4@gmail.com
+## What
+AI tools directory with 75+ tools across 12 categories. Search, filter by price/rating, find free alternatives.
 
-## Stats
-- 75+ tools, 12 categories
-- Search, free/paid/freemium/top-rated filters
-- Free alternatives for each tool
+## Tech Stack
+- Single-page HTML/JS (no framework, no build step)
+- Vanilla JS with TOOLS array in index.html
+- Vercel hosting + GitHub Pages
+
+## Key Files
+- index.html - Everything (HTML + CSS + JS + tool data)
+- All tools defined as JS objects in const TOOLS array (line ~162)
+
+## How to Deploy
+```
+# Vercel
+vercel --yes --prod
+
+# GitHub Pages (auto on push)
+git push origin main
+```
+
+## How to Add a Tool
+Add object to TOOLS array in index.html:
+```
+{name:"ToolName",maker:"Company",icon:"emoji",iconBg:"#hex",cat:"Category",desc:"Description",price:"Free|Freemium|Paid|Waitlist",priceNote:"Pricing detail",rating:4.5,alt:"Free: alternative1, alternative2",url:"https://..."}
+```
 
 ## Categories
 AI Chat, Image Gen, Video Gen, Voice/TTS, Code, Writing, Productivity, Design, Marketing, Data, Research, Education
 
-## Key Rules
-- **No duplicate tools** — removed Notion AI (Productivity), Grammarly (Education)
-- **Deploy:** `vercel --yes --prod` from local, push to GitHub for Pages
-- **Price field:** Use "Free", "Freemium", "Paid", or "Waitlist"
+## Rules
+- NO duplicate tools (check existing before adding)
+- Price field must be exactly: "Free", "Freemium", "Paid", or "Waitlist"
+- Rating: 1.0 to 5.0
+- alt field: List free alternatives separated by commas
 
-## Recent Additions
-- Bulk Email Alias Generator (Paid) — Divyank Codes tutorial for bulk Gmail aliases
-- Playout.video (Paid) — 24/7 looped YouTube livestream for watch hours
+## Known Issues
+- None currently active
+
+## Email
+futureintelligence4@gmail.com
+
+## .gitignore
+None needed (single HTML file, no secrets)
